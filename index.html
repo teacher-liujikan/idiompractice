@@ -4,10 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>成語練功房｜三～六年級</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* 教育部標準楷書（中華民國教育部，CC BY-ND 3.0 TW）：依序使用裝置已安裝的字型、網站 fonts 資料夾內的原始字型檔 */
+@font-face{
+  font-family:"EduKai";
+  src:local("TW-MOE-Std-Kai"),local("教育部標準楷書"),
+      url("fonts/edukai-5.0.ttf") format("truetype"),
+      url("fonts/edukai-4.0.ttf") format("truetype");
+  font-display:swap;
+}
 :root{
   --paper:#F5F8F0; --card:#FFFFFF; --grid:#7DB58A; --grid-soft:#D6E9DA;
   --ink:#1F2D3A; --muted:#5A6A63; --red:#D2373B; --red-soft:#FCE6E4;
@@ -32,7 +37,7 @@
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{
   margin:0;min-height:100%;color:var(--ink);
-  font-family:"LXGW WenKai TC","BiauKai","DFKai-SB","Kaiti TC","KaiTi","PingFang TC","Microsoft JhengHei",serif;
+  font-family:"EduKai","TW-MOE-Std-Kai","教育部標準楷書","DFKai-SB","BiauKai","標楷體",serif;
   background-color:var(--paper);
   background-image:
     linear-gradient(var(--grid-soft) 1px,transparent 1px),
@@ -100,6 +105,18 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .gr small{color:var(--muted);font-size:13px}
 .gr[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
 .gr[aria-pressed="true"] small{color:#fff;opacity:.9}
+
+.tz span,.choice,.tile,.mcard,.blank,.witem b,.qtext,.feedback p,.back-side p,.zy{font-synthesis:none;font-synthesis-weight:none}
+.tz span,.choice,.tile,.mcard.idiom,.witem b{font-weight:400}
+.pron{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:8px 0 4px}
+.tagmoe{display:inline-block;font-size:14px;color:#fff;background:var(--ok);border-radius:8px;padding:0 8px}
+.zy{font-size:clamp(17px,4.6vw,21px);color:var(--ink)}
+a.moe{font-size:15px;color:var(--blue);text-underline-offset:3px}
+.zy-s{font-size:16px;color:var(--ink);letter-spacing:.05em}
+.bian{font-size:15px;color:var(--muted);margin:0 0 4px}
+a.moe{display:inline-block;margin:0 0 6px}
+.sy{white-space:nowrap;display:inline-block;margin-right:.4em}
+.bar h2{font-size:clamp(18px,4.8vw,22px)}
 
 /* Game screen */
 .bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -227,6 +244,24 @@ const DATA = {
  6:{lessons:[{"n": 1, "items": [["風塵僕僕", "塵", "形容奔波忙碌，旅途勞累。", "叔叔從國外出差回來，風塵僕僕的拖著行李進門。"], ["蓬頭垢面", "垢", "形容人頭髮散亂、面容骯髒的樣子。", "熬夜趕報告的哥哥蓬頭垢面，連臉都忘了洗。"], ["鳳毛麟角", "鳳", "比喻稀罕珍貴的人、物。", "能同時精通五種樂器的人，在我們學校可說是鳳毛麟角。"], ["野人獻曝", "曝", "比喻平凡人所貢獻的平凡事物。", "我只是野人獻曝，提出一點小小的想法，希望對大家有幫助。"]]}, {"n": 2, "items": [["錦上添花", "添", "比喻美上加美，喜上加喜。", "原本就很美味的蛋糕，再加上新鮮草莓，更是錦上添花。"], ["白駒過隙", "隙", "比喻時間過得很快。", "光陰如白駒過隙，轉眼間我們就要升上國中了。"], ["禮尚往來", "尚", "形容別人如何對待你，你也如何對待別人。", "同學請我吃了一包餅乾，我也禮尚往來，請他喝一杯飲料。"], ["朝三暮四", "暮", "比喻人心意不定、反覆無常。", "他做事朝三暮四，今天想學鋼琴，明天又想改學畫畫。"], ["一瀉千里", "瀉", "形容水奔流直下，通暢快速。或比喻文筆流暢，氣勢奔放。", "大雨過後，瀑布的水量大增，一瀉千里，氣勢驚人。"]]}, {"n": 3, "items": [["退避三舍", "舍", "比喻主動退讓，不與人相爭。", "那隻大白鵝脾氣很兇，路過的人都對牠退避三舍。"], ["草木皆兵", "皆", "形容疑神疑鬼、驚恐不安。", "看完鬼故事後，弟弟晚上聽到一點聲音就草木皆兵。"], ["蓬蓽生輝", "蓬", "比喻他人所贈之物或貴客之來訪令人倍感光彩。", "謝謝您送來的名家字畫，讓我們的小店蓬蓽生輝。"], ["深居簡出", "簡", "指人平日待在家裡，很少外出。", "那位作家深居簡出，很少在公開場合露面。"], ["萬籟俱寂", "寂", "萬物無聲，一片寂靜。", "露營的夜晚萬籟俱寂，只看得到滿天閃爍的星星。"]]}, {"n": 4, "items": [["揚湯止沸", "沸", "比喻暫時紓解困境，無法根本解決問題。", "只把垃圾藏到床底下，不過是揚湯止沸，房間還是很亂。"], ["飛黃騰達", "騰", "比喻仕途得意，很快到達高位。", "故事裡的窮書生考上狀元，從此飛黃騰達。"], ["唯唯諾諾", "唯", "比喻順從而無所違逆。用於貶義。", "他對老闆總是唯唯諾諾，從來不敢說出自己的意見。"], ["搖旗吶喊", "吶", "比喻為他人助長聲勢。", "運動會上，全班同學為參加接力賽的選手搖旗吶喊。"], ["本末倒置", "置", "比喻不知事情的輕重緩急。", "為了買漂亮的文具而沒錢買課本，真是本末倒置。"]]}, {"n": 5, "items": [["車載斗量", "載", "用車裝，拿斗量。形容數量很多，不可勝數。", "秋天到了，果園裡的柿子多得車載斗量。"], ["多多益善", "益", "指愈多愈好。", "環保志工說，回收的寶特瓶多多益善，歡迎大家踴躍捐出。"], ["名副其實", "副", "名聲或名稱與實際相符合。", "這家店的牛肉麵又大碗又好吃，真是名副其實的「巨無霸麵」。"], ["大義滅親", "滅", "比喻為了維護公理正義，不徇私情，滅了犯罪的親人，或讓他們接受法律制裁。", "故事裡的包青天大義滅親，依法處罰了犯錯的姪子。"], ["觸目驚心", "觸", "形容事情景況，令人震驚。", "海灘上堆滿了塑膠垃圾，景象觸目驚心。"]]}, {"n": 6, "items": [["荒謬絕倫", "荒", "形容荒唐、錯誤到了極點。", "有人說吃肥皂可以變聰明，這種說法真是荒謬絕倫。"], ["永垂不朽", "朽", "永遠流傳而不可磨滅。", "這位科學家的偉大發明，將會永垂不朽。"], ["駕輕就熟", "駕", "比喻對事情很熟悉，做起來很輕鬆。", "姊姊做了好幾年的蛋糕，現在做起來駕輕就熟。"], ["盛氣凌人", "凌", "用傲慢的氣勢壓迫別人。", "他仗著自己是班長，常常盛氣凌人的命令同學做事。"], ["巧奪天工", "奪", "雖然是人工所製，但是精巧勝過天然。形容技藝巧妙。", "這座用米粒雕刻的小佛像巧奪天工，令人讚嘆。"]]}],
   comic:{"風塵僕僕": [["🧳", "👨", "坐了十幾個小時的飛機和火車……"], ["🏠", "😮‍💨", "終於到家了！"], "爸爸出差一週，＿＿的趕回家過年。"], "蓬頭垢面": [["⛺", "👦", "在山上露營三天，都沒辦法洗澡……"], ["🪞", "😵", "（頭髮亂翹，臉上都是泥巴）"], "露營回來的弟弟＿＿，媽媽差點認不出他。"], "鳳毛麟角": [["🔍", "👧", "全校兩千人，有誰會說五種語言？"], ["🌟", "👩‍🏫", "只有一位，就是校長！"], "能說五種語言的人非常少，簡直是＿＿。"], "野人獻曝": [["📋", "👦", "我有一個小點子，不知道有沒有用……"], ["💡", "👦", "或許我們可以把回收紙做成筆記本？"], "他謙虛的說自己只是＿＿，提供一點淺見。"], "錦上添花": [["🏆", "👧", "我得到作文比賽第一名了！"], ["🎂", "🥳", "而且今天剛好是我的生日！"], "得獎又剛好過生日，真是＿＿。"], "白駒過隙": [["🎒", "👶", "（一年級第一天上學）"], ["🎓", "🧑", "（一眨眼，已經要畢業了！）"], "時間過得真快，六年就像＿＿一樣。"], "禮尚往來": [["🎁", "👵", "這是我包的粽子，送給你們吃！"], ["🎁", "👩", "謝謝！這是我們烤的鳳梨酥，請您嚐嚐！"], "鄰居送來粽子，媽媽也＿＿，回送鳳梨酥。"], "朝三暮四": [["⚽", "👦", "我要加入足球社！"], ["🎨", "👦", "算了，我改加入美術社……不，還是熱舞社好了！"], "他一下想參加這個，一下又想參加那個，真是＿＿。"], "一瀉千里": [["⛰️", "🌧️", "（山上下了一整夜的大雨）"], ["🏞️", "😲", "哇！河水衝得好快啊！"], "暴雨過後，溪水＿＿，大家都不敢靠近。"], "退避三舍": [["🌳", "🐝", "（花圃旁邊有一個好大的蜂窩）"], ["🏃", "😨", "快走快走，離它遠一點！"], "大家看到那個大蜂窩，都＿＿，不敢靠近。"], "草木皆兵": [["👻", "👦", "剛剛看完恐怖片……"], ["🌳", "😱", "窗外的樹影是不是有人？！那是什麼聲音？！"], "看完恐怖片，他＿＿，連樹影都以為是壞人。"], "蓬蓽生輝": [["🏠", "👴", "歡迎歡迎！您能來我家，真是太榮幸了！"], ["🏠", "👨‍🎨", "您太客氣了！"], "大畫家來家裡作客，爺爺覺得＿＿。"], "深居簡出": [["🏡", "👵", "（老奶奶每天在家種花、看書）"], ["🏡", "👦", "奶奶，您怎麼都不出門呀？"], "隔壁的老奶奶＿＿，很少看到她出門。"], "萬籟俱寂": [["🌙", "🦉", "（深夜兩點）"], ["🌙", "😴", "（連一點聲音都沒有）"], "到了深夜，整個村莊＿＿，大家都睡了。"], "揚湯止沸": [["🏠", "👨", "屋頂漏水，先拿桶子接著吧。"], ["🪣", "😩", "可是桶子一下就滿了，還是一直漏……"], "只拿桶子接水卻不修屋頂，只是＿＿。"], "飛黃騰達": [["📜", "🧑", "（一個窮書生每天認真讀書）"], ["👑", "🤴", "（考上狀元後，當上了大官）"], "那位書生考上狀元後＿＿，當了大官。"], "唯唯諾諾": [["🏢", "👨‍💼", "這個計畫就照我說的做！"], ["🏢", "🙇", "是是是，好好好，您說得都對……"], "不管主管說什麼，他都＿＿，從不表達意見。"], "搖旗吶喊": [["🏟️", "🏃", "（選手正在跑最後一圈）"], ["📣", "🙌", "加油！加油！衝啊！"], "同學們在場邊＿＿，為選手加油打氣。"], "本末倒置": [["📚", "👧", "我花了兩個小時把筆記畫得好漂亮！"], ["📚", "😱", "可是……內容一個字都沒背到！"], "把時間都花在美化筆記，卻沒有讀書，真是＿＿。"], "車載斗量": [["🍊", "👨‍🌾", "今年的橘子大豐收！"], ["🚚", "😄", "一車、兩車、三車……怎麼載都載不完！"], "今年橘子大豐收，多到＿＿。"], "多多益善": [["📚", "👩‍🏫", "圖書館要募集二手書，"], ["📦", "😊", "越多越好，有多少都可以拿來！"], "老師說捐書不限數量，＿＿。"], "名副其實": [["🐟", "👦", "聽說這座湖叫做「魚湖」……"], ["🎣", "😲", "哇！一放下釣竿就釣到魚！"], "這座湖裡到處都是魚，真是＿＿的「魚湖」。"], "大義滅親": [["⚖️", "👨‍⚖️", "雖然你是我的親人，"], ["⚖️", "👨‍⚖️", "但犯了法，一樣要接受處罰！"], "法官不因對方是親人而放過他，真是＿＿。"], "觸目驚心": [["🌳", "👦", "這裡以前是一大片森林……"], ["🪵", "😨", "現在樹都被砍光了！"], "森林被大量砍伐，景象令人＿＿。"], "荒謬絕倫": [["📱", "👦", "網路上說，倒立吃飯可以長高耶！"], ["📱", "👩", "這麼奇怪的說法，怎麼可能是真的！"], "「倒立吃飯會長高」這種說法，真是＿＿。"], "永垂不朽": [["🏥", "👩‍🏫", "這位醫生一生都在救人，"], ["📖", "👦", "他的故事會一直被大家記得！"], "他救人無數的事蹟，將會＿＿。"], "駕輕就熟": [["🚲", "👦", "第一次騎腳踏車，一直跌倒……"], ["🚲", "😎", "練了一整個暑假，現在騎得好穩！"], "練習久了，他騎起腳踏車就＿＿了。"], "盛氣凌人": [["🏫", "😤", "喂！你們都要聽我的！"], ["🏫", "😠", "憑什麼？大家都是同學啊！"], "他說話總是＿＿，難怪大家不喜歡他。"], "巧奪天工": [["🌹", "👧", "這朵花好像真的喔！"], ["🌹", "👨‍🎨", "其實它是用紙一片一片摺出來的！"], "這朵紙摺的玫瑰＿＿，跟真的一模一樣。"]}}
 };
+
+/* 注音來源：中華民國教育部《國語辭典簡編本》（版本編號：2014_20260929）；簡編本未收錄者依《重編國語辭典修訂本》 */
+const ZY = {"拖泥帶水": {"zy": "ㄊㄨㄛ ㄋㄧˊ ㄉㄞˋ ㄕㄨㄟˇ", "no": "152100007", "src": "c"}, "千變萬化": {"zy": "ㄑㄧㄢ ㄅㄧㄢˋ ㄨㄢˋ ㄏㄨㄚˋ", "no": "364800001", "src": "c"}, "千鈞一髮": {"zy": "ㄑㄧㄢ ㄐㄩㄣ ㄧ ㄈㄚˇ", "no": "364800012", "src": "c", "bian": "ㄑㄧㄢ ㄐㄩㄣ ㄧˋ ㄈㄚˇ"}, "風平浪靜": {"zy": "ㄈㄥ ㄆㄧㄥˊ ㄌㄤˋ ㄐㄧㄥˋ", "no": "091300003", "src": "c"}, "手足無措": {"zy": "ㄕㄡˇ ㄗㄨˊ ㄨˊ ㄘㄨㄛˋ", "no": "500400059", "src": "c"}, "按部就班": {"zy": "ㄢˋ ㄅㄨˋ ㄐㄧㄡˋ ㄅㄢ", "no": "581600002", "src": "c"}, "約法三章": {"zy": "ㄩㄝ ㄈㄚˇ ㄙㄢ ㄓㄤ", "no": "652200002", "src": "c"}, "興高采烈": {"zy": "ㄒㄧㄥˋ ㄍㄠ ㄘㄞˇ ㄌㄧㄝˋ", "no": "411200002", "src": "c"}, "耳提面命": {"zy": "ㄦˇ ㄊㄧˊ ㄇㄧㄢˋ ㄇㄧㄥˋ", "no": "582900008", "src": "c"}, "愁眉不展": {"zy": "ㄔㄡˊ ㄇㄟˊ ㄅㄨˋ ㄓㄢˇ", "no": "469900001", "src": "c"}, "神出鬼沒": {"zy": "ㄕㄣˊ ㄔㄨ ㄍㄨㄟˇ ㄇㄛˋ", "no": "506000041", "src": "c"}, "無理取鬧": {"zy": "ㄨˊ ㄌㄧˇ ㄑㄩˇ ㄋㄠˋ", "no": "624100035", "src": "c"}, "赴湯蹈火": {"zy": "ㄈㄨˋ ㄊㄤ ㄉㄠˋ ㄏㄨㄛˇ", "no": "099100000", "src": "c"}, "不同凡響": {"zy": "ㄅㄨˋ ㄊㄨㄥˊ ㄈㄢˊ ㄒㄧㄤˇ", "no": "028500071", "src": "c"}, "心煩意亂": {"zy": "ㄒㄧㄣ ㄈㄢˊ ㄧˋ ㄌㄨㄢˋ", "no": "404200009", "src": "c"}, "惱羞成怒": {"zy": "ㄋㄠˇ ㄒㄧㄡ ㄔㄥˊ ㄋㄨˋ", "no": "161000004", "src": "c"}, "強詞奪理": {"zy": "ㄑㄧㄤˇ ㄘˊ ㄉㄨㄛˊ ㄌㄧˇ", "no": "372000011", "src": "c"}, "一知半解": {"zy": "ㄧ ㄓ ㄅㄢˋ ㄐㄧㄝˇ", "no": "583700172", "src": "c", "bian": "ㄧˋ ㄓ ㄅㄢˋ ㄐㄧㄝˇ"}, "生龍活虎": {"zy": "ㄕㄥ ㄌㄨㄥˊ ㄏㄨㄛˊ ㄏㄨˇ", "no": "508600026", "src": "c"}, "揚眉吐氣": {"zy": "ㄧㄤˊ ㄇㄟˊ ㄊㄨˇ ㄑㄧˋ", "no": "617100001", "src": "c"}, "防患未然": {"zy": "ㄈㄤˊ ㄏㄨㄢˋ ㄨㄟˋ ㄖㄢˊ", "no": "089800021", "src": "c"}, "兩敗俱傷": {"zy": "ㄌㄧㄤˇ ㄅㄞˋ ㄐㄩˋ ㄕㄤ", "no": "203400002", "src": "c"}, "出生入死": {"zy": "ㄔㄨ ㄕㄥ ㄖㄨˋ ㄙˇ", "no": "480100086", "src": "c"}, "杯盤狼藉": {"zy": "ㄅㄟ ㄆㄢˊ ㄌㄤˊ ㄐㄧˊ", "no": "006900001", "src": "c"}, "一箭雙鵰": {"zy": "ㄧ ㄐㄧㄢˋ ㄕㄨㄤ ㄉㄧㄠ", "no": "583700141", "src": "c", "bian": "ㄧˊ ㄐㄧㄢˋ ㄕㄨㄤ ㄉㄧㄠ"}, "如釋重負": {"zy": "ㄖㄨˊ ㄕˋ ㄓㄨㄥˋ ㄈㄨˋ", "no": "5228000291", "src": "c"}, "逃之夭夭": {"zy": "ㄊㄠˊ ㄓ ㄧㄠ ㄧㄠ", "no": "136400017", "src": "c"}, "文不對題": {"zy": "ㄨㄣˊ ㄅㄨˋ ㄉㄨㄟˋ ㄊㄧˊ", "no": "638700002", "src": "c", "bian": "ㄨㄣˊ ㄅㄨˊ ㄉㄨㄟˋ ㄊㄧˊ"}, "家喻戶曉": {"zy": "ㄐㄧㄚ ㄩˋ ㄏㄨˋ ㄒㄧㄠˇ", "no": "311900056", "src": "c"}, "繁文縟節": {"zy": "ㄈㄢˊ ㄨㄣˊ ㄖㄨˋ ㄐㄧㄝˊ", "no": "086100017", "src": "c"}, "花團錦簇": {"zy": "ㄏㄨㄚ ㄊㄨㄢˊ ㄐㄧㄣˇ ㄘㄨˋ", "no": "284300017", "src": "c"}, "迎刃而解": {"zy": "ㄧㄥˊ ㄖㄣˋ ㄦˊ ㄐㄧㄝˇ", "no": "619900016", "src": "c"}, "刻骨銘心": {"zy": "ㄎㄜˋ ㄍㄨˇ ㄇㄧㄥˊ ㄒㄧㄣ", "no": "251400005", "src": "c"}, "脫胎換骨": {"zy": "ㄊㄨㄛ ㄊㄞ ㄏㄨㄢˋ ㄍㄨˇ", "no": "152200006", "src": "c"}, "一觸即發": {"zy": "ㄧ ㄔㄨˋ ㄐㄧˊ ㄈㄚ", "no": "583700191", "src": "c", "bian": "ㄧˊ ㄔㄨˋ ㄐㄧˊ ㄈㄚ"}, "矯枉過正": {"zy": "ㄐㄧㄠˇ ㄨㄤˇ ㄍㄨㄛˋ ㄓㄥˋ", "no": "321900006", "src": "c"}, "民不聊生": {"zy": "ㄇㄧㄣˊ ㄅㄨˋ ㄌㄧㄠˊ ㄕㄥ", "no": "075600003", "src": "c"}, "志同道合": {"zy": "ㄓˋ ㄊㄨㄥˊ ㄉㄠˋ ㄏㄜˊ", "no": "427100002", "src": "c"}, "樂不可支": {"zy": "ㄌㄜˋ ㄅㄨˋ ㄎㄜˇ ㄓ", "no": "175500001", "src": "c"}, "未雨綢繆": {"zy": "ㄨㄟˋ ㄩˇ ㄔㄡˊ ㄇㄡˊ", "no": "633700025", "src": "c"}, "一針見血": {"zy": "ㄧ ㄓㄣ ㄐㄧㄢˋ ㄒㄧㄝˇ", "no": "583700181", "src": "c", "bian": "ㄧˋ ㄓㄣ ㄐㄧㄢˋ ㄒㄧㄝˇ"}, "提綱挈領": {"zy": "ㄊㄧˊ ㄍㄤ ㄑㄧㄝˋ ㄌㄧㄥˇ", "no": "1435000121", "src": "c"}, "冥頑不靈": {"zy": "ㄇㄧㄥˊ ㄨㄢˊ ㄅㄨˋ ㄌㄧㄥˊ", "no": "0775000091", "src": "c"}, "天翻地覆": {"zy": "ㄊㄧㄢ ㄈㄢ ㄉㄧˋ ㄈㄨˋ", "no": "147500010", "src": "c"}, "不勝枚舉": {"zy": "ㄅㄨˋ ㄕㄥ ㄇㄟˊ ㄐㄩˇ", "no": "028500304", "src": "c"}, "背水一戰": {"zy": "ㄅㄟˋ ㄕㄨㄟˇ ㄧ ㄓㄢˋ", "no": "008000015", "src": "c", "bian": "ㄅㄟˋ ㄕㄨㄟˇ ㄧˊ ㄓㄢˋ"}, "鵬程萬里": {"zy": "ㄆㄥˊ ㄔㄥˊ ㄨㄢˋ ㄌㄧˇ", "no": "040400001", "src": "c"}, "恃才傲物": {"zy": "ㄕˋ ㄘㄞˊ ㄠˋ ㄨˋ", "no": "493200003", "src": "c"}, "垂涎三尺": {"zy": "ㄔㄨㄟˊ ㄒㄧㄢˊ ㄙㄢ ㄔˇ", "no": "483800013", "src": "c"}, "層出不窮": {"zy": "ㄘㄥˊ ㄔㄨ ㄅㄨˋ ㄑㄩㄥˊ", "no": "548900004", "src": "c"}, "融會貫通": {"zy": "ㄖㄨㄥˊ ㄏㄨㄟˋ ㄍㄨㄢˋ ㄊㄨㄥ", "no": "527100006", "src": "c"}, "七竅生煙": {"zy": "ㄑㄧ ㄑㄧㄠˋ ㄕㄥ ㄧㄢ", "no": "3522000042", "src": "c"}, "疲於奔命": {"zy": "ㄆㄧˊ ㄩˊ ㄅㄣ ㄇㄧㄥˋ", "no": "042900007", "src": "c"}, "孜孜不倦": {"zy": "ㄗ ㄗ ㄅㄨˋ ㄐㄩㄢˋ", "no": "527300001", "src": "c", "bian": "ㄗ ㄗ ㄅㄨˊ ㄐㄩㄢˋ"}, "隨遇而安": {"zy": "ㄙㄨㄟˊ ㄩˋ ㄦˊ ㄢ", "no": "5675000251", "src": "c"}, "如願以償": {"zy": "ㄖㄨˊ ㄩㄢˋ ㄧˇ ㄔㄤˊ", "no": "522800047", "src": "c"}, "錙銖必較": {"zy": "ㄗ ㄓㄨ ㄅㄧˋ ㄐㄧㄠˋ", "no": "528400001", "src": "c"}, "延年益壽": {"zy": "ㄧㄢˊ ㄋㄧㄢˊ ㄧˋ ㄕㄡˋ", "no": "608800003", "src": "c"}, "穩如泰山": {"zy": "ㄨㄣˇ ㄖㄨˊ ㄊㄞˋ ㄕㄢ", "no": "639500010", "src": "c"}, "熟能生巧": {"zy": "ㄕㄡˊ ㄋㄥˊ ㄕㄥ ㄑㄧㄠˇ", "no": "500300002", "src": "c"}, "當務之急": {"zy": "ㄉㄤ ㄨˋ ㄓ ㄐㄧˊ", "no": "110100048", "src": "c"}, "口碑載道": {"zy": "ㄎㄡˇ ㄅㄟ ㄗㄞˋ ㄉㄠˋ", "src": "r"}, "手不釋卷": {"zy": "ㄕㄡˇ ㄅㄨˋ ㄕˋ ㄐㄩㄢˋ", "no": "5004000051", "src": "c", "bian": "ㄕㄡˇ ㄅㄨˊ ㄕˋ ㄐㄩㄢˋ"}, "楚楚可憐": {"zy": "ㄔㄨˇ ㄔㄨˇ ㄎㄜˇ ㄌㄧㄢˊ", "no": "481600004", "src": "c"}, "道聽塗說": {"zy": "ㄉㄠˋ ㄊㄧㄥ ㄊㄨˊ ㄕㄨㄛ", "no": "105600009", "src": "c"}, "後起之秀": {"zy": "ㄏㄡˋ ㄑㄧˇ ㄓ ㄒㄧㄡˋ", "no": "274600023", "src": "c"}, "自慚形穢": {"zy": "ㄗˋ ㄘㄢˊ ㄒㄧㄥˊ ㄏㄨㄟˋ", "no": "5300001282", "src": "c"}, "名列前茅": {"zy": "ㄇㄧㄥˊ ㄌㄧㄝˋ ㄑㄧㄢˊ ㄇㄠˊ", "no": "077000015", "src": "c"}, "耀武揚威": {"zy": "ㄧㄠˋ ㄨˇ ㄧㄤˊ ㄨㄟ", "no": "602500002", "src": "c"}, "殊途同歸": {"zy": "ㄕㄨ ㄊㄨˊ ㄊㄨㄥˊ ㄍㄨㄟ", "no": "5108000001", "src": "c"}, "道貌岸然": {"zy": "ㄉㄠˋ ㄇㄠˋ ㄢˋ ㄖㄢˊ", "no": "105600003", "src": "c"}, "懸崖勒馬": {"zy": "ㄒㄩㄢˊ ㄧㄞˊ ㄌㄜˋ ㄇㄚˇ", "no": "416900015", "src": "c"}, "班門弄斧": {"zy": "ㄅㄢ ㄇㄣˊ ㄋㄨㄥˋ ㄈㄨˇ", "no": "0113000011", "src": "c"}, "一決雌雄": {"zy": "ㄧ ㄐㄩㄝˊ ㄘ ㄒㄩㄥˊ", "no": "5837001471", "src": "c", "bian": "ㄧˋ ㄐㄩㄝˊ ㄘ ㄒㄩㄥˊ"}, "臨深履薄": {"zy": "ㄌㄧㄣˊ ㄕㄣ ㄌㄩˇ ㄅㄛˊ", "src": "r"}, "醉生夢死": {"zy": "ㄗㄨㄟˋ ㄕㄥ ㄇㄥˋ ㄙˇ", "no": "539800004", "src": "c"}, "應接不暇": {"zy": "ㄧㄥˋ ㄐㄧㄝ ㄅㄨˋ ㄒㄧㄚˊ", "no": "622000011", "src": "c"}, "微乎其微": {"zy": "ㄨㄟˊ ㄏㄨ ㄑㄧˊ ㄨㄟˊ", "no": "632000010", "src": "c"}, "腹背受敵": {"zy": "ㄈㄨˋ ㄅㄟˋ ㄕㄡˋ ㄉㄧˊ", "no": "099800001", "src": "c"}, "悲天憫人": {"zy": "ㄅㄟ ㄊㄧㄢ ㄇㄧㄣˇ ㄖㄣˊ", "no": "007600007", "src": "c"}, "歷歷在目": {"zy": "ㄌㄧˋ ㄌㄧˋ ㄗㄞˋ ㄇㄨˋ", "no": "191500005", "src": "c"}, "風塵僕僕": {"zy": "ㄈㄥ ㄔㄣˊ ㄆㄨˊ ㄆㄨˊ", "no": "091300044", "src": "c"}, "蓬頭垢面": {"zy": "ㄆㄥˊ ㄊㄡˊ ㄍㄡˋ ㄇㄧㄢˋ", "no": "040600002", "src": "c"}, "鳳毛麟角": {"zy": "ㄈㄥˋ ㄇㄠˊ ㄌㄧㄣˊ ㄐㄧㄠˇ", "no": "092900001", "src": "c"}, "野人獻曝": {"zy": "ㄧㄝˇ ㄖㄣˊ ㄒㄧㄢˋ ㄆㄨˋ", "no": "5977000151", "src": "c"}, "錦上添花": {"zy": "ㄐㄧㄣˇ ㄕㄤˋ ㄊㄧㄢ ㄏㄨㄚ", "no": "333800006", "src": "c"}, "白駒過隙": {"zy": "ㄅㄞˊ ㄐㄩ ㄍㄨㄛˋ ㄒㄧˋ", "src": "r"}, "禮尚往來": {"zy": "ㄌㄧˇ ㄕㄤˋ ㄨㄤˇ ㄌㄞˊ", "no": "188600020", "src": "c"}, "朝三暮四": {"zy": "ㄓㄠ ㄙㄢ ㄇㄨˋ ㄙˋ", "no": "4354000111", "src": "c"}, "一瀉千里": {"zy": "ㄧ ㄒㄧㄝˋ ㄑㄧㄢ ㄌㄧˇ", "no": "5837001621", "src": "c", "bian": "ㄧˊ ㄒㄧㄝˋ ㄑㄧㄢ ㄌㄧˇ"}, "退避三舍": {"zy": "ㄊㄨㄟˋ ㄅㄧˋ ㄙㄢ ㄕㄜˋ", "no": "154200001", "src": "c"}, "草木皆兵": {"zy": "ㄘㄠˇ ㄇㄨˋ ㄐㄧㄝ ㄅㄧㄥ", "no": "546500007", "src": "c"}, "蓬蓽生輝": {"zy": "ㄆㄥˊ ㄅㄧˋ ㄕㄥ ㄏㄨㄟ", "no": "0406000011", "src": "c"}, "深居簡出": {"zy": "ㄕㄣ ㄐㄩ ㄐㄧㄢˇ ㄔㄨ", "no": "505300013", "src": "c"}, "萬籟俱寂": {"zy": "ㄨㄢˋ ㄌㄞˋ ㄐㄩˋ ㄐㄧˊ", "no": "638200013", "src": "c"}, "揚湯止沸": {"zy": "ㄧㄤˊ ㄊㄤ ㄓˇ ㄈㄟˋ", "no": "6171000031", "src": "c"}, "飛黃騰達": {"zy": "ㄈㄟ ㄏㄨㄤˊ ㄊㄥˊ ㄉㄚˊ", "no": "082400013", "src": "c"}, "唯唯諾諾": {"zy": "ㄨㄟˊ ㄨㄟˊ ㄋㄨㄛˋ ㄋㄨㄛˋ", "no": "631600010", "src": "c"}, "搖旗吶喊": {"zy": "ㄧㄠˊ ㄑㄧˊ ㄋㄚˋ ㄏㄢˇ", "no": "601000012", "src": "c"}, "本末倒置": {"zy": "ㄅㄣˇ ㄇㄛˋ ㄉㄠˋ ㄓˋ", "no": "013300005", "src": "c"}, "車載斗量": {"zy": "ㄔㄜ ㄗㄞˋ ㄉㄡˇ ㄌㄧㄤˊ", "no": "4668000331", "src": "c"}, "多多益善": {"zy": "ㄉㄨㄛ ㄉㄨㄛ ㄧˋ ㄕㄢˋ", "no": "1255000091", "src": "c"}, "名副其實": {"zy": "ㄇㄧㄥˊ ㄈㄨˋ ㄑㄧˊ ㄕˊ", "no": "077000009", "src": "c"}, "大義滅親": {"zy": "ㄉㄚˋ ㄧˋ ㄇㄧㄝˋ ㄑㄧㄣ", "no": "101500460", "src": "c"}, "觸目驚心": {"zy": "ㄔㄨˋ ㄇㄨˋ ㄐㄧㄥ ㄒㄧㄣ", "no": "482600004", "src": "c"}, "荒謬絕倫": {"zy": "ㄏㄨㄤ ㄇㄧㄡˋ ㄐㄩㄝˊ ㄌㄨㄣˊ", "src": "r"}, "永垂不朽": {"zy": "ㄩㄥˇ ㄔㄨㄟˊ ㄅㄨˋ ㄒㄧㄡˇ", "no": "6606000051", "src": "c"}, "駕輕就熟": {"zy": "ㄐㄧㄚˋ ㄑㄧㄥ ㄐㄧㄡˋ ㄕㄡˊ", "no": "313800003", "src": "c"}, "盛氣凌人": {"zy": "ㄕㄥˋ ㄑㄧˋ ㄌㄧㄥˊ ㄖㄣˊ", "no": "5099000101", "src": "c"}, "巧奪天工": {"zy": "ㄑㄧㄠˇ ㄉㄨㄛˊ ㄊㄧㄢ ㄍㄨㄥ", "no": "361800003", "src": "c"}};
+const MOE_URL = w => (ZY[w] && ZY[w].src === "c"
+  ? "https://dict.concised.moe.edu.tw/search.jsp?md=1&word="
+  : "https://dict.revised.moe.edu.tw/search.jsp?md=1&word=") + encodeURIComponent(w);
+const syl = t => (t || "").split(" ").filter(Boolean).map(x=>`<span class="sy">${x}</span>`).join(" ");
+const zy = w => syl(ZY[w] && ZY[w].zy);
+function pron(w){
+  const d = ZY[w] || {};
+  const bian = d.bian ? `<div class="bian">變調：${syl(d.bian)}</div>` : "";
+  const note = d.src === "r" ? `<div class="bian">《國語辭典簡編本》未收錄此成語，注音依《重編國語辭典修訂本》。</div>` : "";
+  return `<div class="pron"><span class="tagmoe">教育部注音</span><span class="zy">${zy(w)||"（查無資料）"}</span></div>${bian}${note}`
+       + `<a class="moe" href="${MOE_URL(w)}" target="_blank" rel="noopener">到教育部辭典查詢 ↗</a>`;
+}
+document.addEventListener("click", e => {
+  if(e.target.closest && e.target.closest("a.moe")) e.stopPropagation();
+}, true);
 const GNAME = {3:"三",4:"四",5:"五",6:"六"};
 let GRADE, LESSONS, ALL, COMIC, ALLKEYS;
 function loadGrade(g){
@@ -242,13 +277,12 @@ const GAMES = [
   {id:"miss",  ico:"🔍", name:"生字大搜查",     desc:"成語缺了一個生字，選出正確的字。"},
   {id:"order", ico:"🧩", name:"成語排排站",     desc:"四個字亂掉了，依順序點回來。"},
   {id:"mem",   ico:"🃏", name:"翻翻配對",       desc:"翻開卡片，把成語和解釋配成一對。"},
-  {id:"flash", ico:"🗂️", name:"成語字卡",       desc:"一張一張看，點卡片看解釋和造句。"}
+  {id:"flash", ico:"🗂️", name:"成語字卡",       desc:"一張一張看，點卡片看注音、解釋和例句。"}
 ];
 
 const $app = document.getElementById("app");
 const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
 const tz = (str, cls=[]) => `<span class="tz">${[...str].map((c,i)=>`<span class="${cls[i]||""}">${c}</span>`).join("")}</span>`;
-function say(t){ try{ const u=new SpeechSynthesisUtterance(t); u.lang="zh-TW"; u.rate=.85; speechSynthesis.cancel(); speechSynthesis.speak(u);}catch(e){} }
 
 /* ---------- settings ---------- */
 let S;
@@ -270,6 +304,26 @@ function initialGrade(){
   return 3;
 }
 const pool = () => ALL.filter(x => S.lessons.includes(x.lesson));
+
+/* ---------- 字型狀態 ---------- */
+let FONT_OK = null;
+function updateFontInfo(){
+  const el = document.getElementById("fontinfo");
+  if(!el) return;
+  if(FONT_OK === true) el.innerHTML = "<br>字型：教育部標準楷書（中華民國教育部，創用CC 姓名標示-禁止改作 3.0 臺灣版）。";
+  else if(FONT_OK === false) el.innerHTML = "<br>此裝置未載入教育部標準楷書，目前以系統字型顯示，部分字形可能與課本不同。";
+  else el.textContent = "";
+}
+function checkFont(){
+  try{
+    if(!document.fonts || !document.fonts.load){ FONT_OK = false; updateFontInfo(); return; }
+    document.fonts.load('20px "EduKai"', "成語練功房").then(()=>{
+      const faces = [...document.fonts].filter(f => f.family.replace(/["']/g, "") === "EduKai");
+      FONT_OK = faces.some(f => f.status === "loaded");
+      updateFontInfo();
+    }).catch(()=>{ FONT_OK = false; updateFontInfo(); });
+  }catch(e){ FONT_OK = false; updateFontInfo(); }
+}
 
 /* ---------- home ---------- */
 function home(msg=""){
@@ -307,7 +361,9 @@ function home(msg=""){
       ${GAMES.map(g=>`<button class="game" data-g="${g.id}"><span class="ico">${g.ico}</span><span><b>${g.name}</b><small>${g.desc}</small></span></button>`).join("")}
     </div>
   </section>
-  <p class="note">本練習為老師自製的免費學習資源，例句與漫畫情境皆為原創。<br>成語範圍對應南一版課程，非出版社官方產品。</p>`;
+  <p class="note">本練習為老師自製的免費學習資源，例句與漫畫情境皆為原創。<br>成語範圍對應南一版課程，非出版社官方產品。<br>
+    注音：中華民國教育部（Ministry of Education, R.O.C.）。《國語辭典簡編本》（版本編號：2014_20260929）網址：https://dict.concised.moe.edu.tw/；簡編本未收錄的 4 個成語依《重編國語辭典修訂本》。<span id="fontinfo"></span></p>`;
+  updateFontInfo();
   $app.querySelectorAll(".lesson").forEach(b=>b.onclick=()=>{
     const n=+b.dataset.l; S.lessons = S.lessons.includes(n)? S.lessons.filter(x=>x!==n) : [...S.lessons,n].sort(); saveS(); home();
   });
@@ -335,7 +391,7 @@ function start(mode, customItems){
 function bar(title, info){
   return `<div class="bar"><button class="back" id="back">← 回首頁</button><h2>${title}</h2><span class="score">${info}</span></div>`;
 }
-function bindBack(){ $app.querySelector("#back").onclick=()=>{ try{speechSynthesis.cancel()}catch(e){} home(); }; }
+function bindBack(){ $app.querySelector("#back").onclick=()=>home(); }
 const gname = id => GAMES.find(g=>g.id===id).name;
 
 function distractIdioms(item){
@@ -401,10 +457,10 @@ function finish(ok,q){
   const last = G.i===G.queue.length-1;
   fb.className="feedback show "+(ok?"good":"bad");
   fb.innerHTML=`<h3>${ok?"⭕ 答對了！":"再想想～正確答案是「"+q.w+"」"}</h3>
+    ${pron(q.w)}
     <p><span class="tagred">解釋</span>${q.exp}</p>
-    <p><span class="tagblue">造句</span>${q.sent}</p>
-    <div class="fx"><button class="btn" id="next">${last?"看成績":"下一題"}</button><button class="speak" id="sp">🔊 唸一次</button></div>`;
-  fb.querySelector("#sp").onclick=()=>say(q.w);
+    <p><span class="tagblue">例句</span>${q.sent}</p>
+    <div class="fx"><button class="btn" id="next">${last?"看成績":"下一題"}</button></div>`;
   const nx=fb.querySelector("#next"); nx.focus({preventScroll:true});
   fb.scrollIntoView({behavior:"smooth",block:"nearest"});
   nx.onclick=()=>{ G.i++; if(G.i<G.queue.length) question(); else result(); };
@@ -455,7 +511,7 @@ function result(){
       <button class="btn ghost" id="again">再玩一次</button>
       <button class="btn ghost" id="home2">換別的遊戲</button>
     </div>
-    ${G.wrong.length?`<div class="wronglist"><h3>要再記熟的成語</h3>${G.wrong.map(w=>`<div class="witem"><b>${w.w}</b><span style="color:var(--muted);font-size:14px">　第${w.lesson}課</span><p>${w.exp}</p></div>`).join("")}</div>`:""}
+    ${G.wrong.length?`<div class="wronglist"><h3>要再記熟的成語</h3>${G.wrong.map(w=>`<div class="witem"><b>${w.w}</b><span style="color:var(--muted);font-size:14px">　第${w.lesson}課</span><p class="zy-s">${zy(w.w)}</p><p>${w.exp}</p></div>`).join("")}</div>`:""}
   </div>`;
   bindBack();
   const mode=G.mode, items=G.items, wrong=[...G.wrong];
@@ -480,7 +536,6 @@ function memory(items){
       const i=+b.dataset.i, c=cards[i];
       if(busy||c.done||open.includes(i)) return;
       open.push(i);
-      if(c.t==="w") say(c.x.w);
       if(open.length===2){
         moves++; const [a,b2]=open;
         if(cards[a].id===cards[b2].id && a!==b2){
@@ -501,7 +556,7 @@ function memory(items){
       <p class="big">全部配對成功！翻了 <b style="color:var(--red)">${moves}</b> 次</p>
       <p>翻越少次越厲害，最少只要 ${best} 次喔。</p>
       <div class="actions"><button class="btn" id="again">再玩一局</button><button class="btn ghost" id="home2">換別的遊戲</button></div>
-      <div class="wronglist"><h3>這局的成語</h3>${chosen.map(w=>`<div class="witem"><b>${w.w}</b><p>${w.exp}</p></div>`).join("")}</div></div>`;
+      <div class="wronglist"><h3>這局的成語</h3>${chosen.map(w=>`<div class="witem"><b>${w.w}</b><p class="zy-s">${zy(w.w)}</p><p>${w.exp}</p></div>`).join("")}</div></div>`;
     bindBack();
     $app.querySelector("#again").onclick=()=>memory(items);
     $app.querySelector("#home2").onclick=()=>home();
@@ -519,15 +574,15 @@ function flash(items){
       <div class="qcard flash" id="card" role="button" tabindex="0" aria-label="點一下翻面">
         ${flipped?`<div class="back-side">
             <div style="text-align:center">${tz(c.w,[...c.w].map(ch=>c.keys.includes(ch)?"filled":""))}</div>
+            ${pron(c.w)}
             <p><span class="tagred">解釋</span>${c.exp}</p>
-            <p><span class="tagblue">造句</span>${c.sent}</p>
+            <p><span class="tagblue">例句</span>${c.sent}</p>
             <p style="font-size:15px;color:var(--muted)">第${c.lesson}課・生字「${c.keys.join("、")}」</p>
           </div>`
         :`<span class="qtag">第${c.lesson}課</span>${tz(c.w)}<span class="qtag">點一下看解釋</span>`}
       </div>
       <div class="flash-nav">
         <button class="btn ghost" id="prev" ${i===0?"disabled style='opacity:.4'":""}>← 上一張</button>
-        <button class="speak" id="sp">🔊 唸一次</button>
         <button class="speak" id="mix">🔀 打亂順序</button>
         <button class="btn" id="next">${i===deck.length-1?"完成":"下一張 →"}</button>
       </div>`;
@@ -535,7 +590,6 @@ function flash(items){
     const card=$app.querySelector("#card");
     card.onclick=()=>{flipped=!flipped;draw();};
     card.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();flipped=!flipped;draw();} };
-    $app.querySelector("#sp").onclick=()=>say(flipped?c.w+"。"+c.exp:c.w);
     $app.querySelector("#mix").onclick=()=>{deck=shuffle(deck);i=0;flipped=false;draw();};
     $app.querySelector("#prev").onclick=()=>{ if(i>0){i--;flipped=false;draw();} };
     $app.querySelector("#next").onclick=()=>{ if(i<deck.length-1){i++;flipped=false;draw();} else home(); };
@@ -545,6 +599,7 @@ function flash(items){
 
 setGrade(initialGrade());
 home();
+checkFont();
 </script>
 </body>
 </html>
