@@ -1,0 +1,13 @@
+教育部標準楷書（TW-MOE-Std-Kai）
+著作權人：中華民國教育部
+版本：Version 4.00, September, 2019（字型檔內標示）
+授權：創用CC 姓名標示-禁止改作 3.0 臺灣版（CC BY-ND 3.0 TW）
+字型檔內原文：本字形檔採用創用CC姓名標示-禁止改作3.0 臺灣版授權。如需引用，請標示中華民國教育部。
+This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to MOE.
+
+本資料夾中的 edukai-4.0.ttf 為完整、未經修改的原始字型檔，取自 npm 套件 @fontpkg/tw-moe-std-kai 4.0.0。
+SHA-256：66d9665513ac529beaa9ec74a843c4152800dca7495285d7c993382a407bb558
+
+若您從教育部官方網站下載較新的字型檔，請直接放入此資料夾：
+  檔名 edukai-5.0.ttf 會優先使用；也可以用官方檔案取代 edukai-4.0.ttf。
+請勿修改、裁切或轉檔字型檔。
