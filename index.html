@@ -162,6 +162,18 @@ a.moe{display:inline-block;margin:0 0 6px}
 
 .btn{border:2px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:14px;padding:10px 20px;font-size:18px;font-weight:700}
 .btn.ghost{background:var(--card);color:var(--ink)}
+.vbtn{border:2px solid var(--blue);background:var(--card);color:var(--blue);border-radius:12px;padding:6px 14px;font-size:17px;cursor:pointer}
+.vlist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media (min-width:560px){.vlist{gap:12px}}
+.vcard{display:flex;flex-direction:column;align-items:stretch;text-align:left;border:2px solid var(--grid);background:var(--paper);border-radius:14px;padding:0;overflow:hidden;cursor:pointer}
+.vcard img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#fff8ec}
+.vcard span{padding:6px 8px}.vcard b{display:block;font-size:17px}.vcard small{color:var(--muted);font-size:12px}
+@media (min-width:560px){.vcard span{padding:8px 12px}.vcard b{font-size:20px}.vcard small{font-size:14px}}
+.vmodal{position:fixed;inset:0;background:rgba(30,22,18,.72);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}
+.vbox{background:var(--card);border-radius:16px;width:min(960px,100%);overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.vhead{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 8px 16px;font-size:20px}
+.vclose{border:0;background:transparent;font-size:24px;line-height:1;padding:6px 10px;cursor:pointer;color:var(--ink)}
+.vbox video{display:block;width:100%;aspect-ratio:16/9;background:#000}
 .speak{border:2px solid var(--grid);background:var(--card);border-radius:12px;padding:4px 12px;font-size:16px}
 
 /* scramble */
@@ -264,6 +276,23 @@ document.addEventListener("click", e => {
   if(e.target.closest && e.target.closest("a.moe")) e.stopPropagation();
 }, true);
 const GNAME = {3:"三",4:"四",5:"五",6:"六"};
+/* 成語動畫（原創）：成語 → videos/檔名 */
+const VIDEO = {"自命不凡":"ziming-bufan","笑裡藏刀":"xiaoli-cangdao","不學無術":"buxue-wushu"};
+const vbtn = w => VIDEO[w] ? `<button class="vbtn" type="button" data-video="${w}">🎬 看動畫</button>` : "";
+function openVideo(w){
+  const f=VIDEO[w]; if(!f) return;
+  closeVideo();
+  const d=document.createElement("div"); d.className="vmodal"; d.id="vmodal";
+  d.setAttribute("role","dialog"); d.setAttribute("aria-label",w+" 成語動畫");
+  d.innerHTML=`<div class="vbox"><div class="vhead"><b>${w}</b><button type="button" class="vclose" aria-label="關閉">✕</button></div>
+    <video src="videos/${f}.mp4" poster="videos/${f}.jpg" controls autoplay playsinline preload="auto"></video></div>`;
+  document.body.appendChild(d);
+  d.addEventListener("click",e=>{ if(e.target===d||e.target.closest(".vclose")) closeVideo(); });
+  d.querySelector(".vclose").focus({preventScroll:true});
+}
+function closeVideo(){ const d=document.getElementById("vmodal"); if(d){ const v=d.querySelector("video"); if(v) v.pause(); d.remove(); } }
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-video]"); if(b){ e.preventDefault(); e.stopPropagation(); openVideo(b.dataset.video); } },true);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeVideo(); });
 let GRADE, LESSONS, ALL, COMIC, ALLKEYS, HAS_J;
 function loadGrade(g){
   GRADE=g; LESSONS=DATA[g].lessons; COMIC=DATA[g].comic; ALL=[];
@@ -364,6 +393,11 @@ function home(msg="", keep=false){
       ${[10,20,0].map(n=>`<button class="pill" data-c="${n}" aria-pressed="${S.count===n}">${n?n+" 題":"全部"}</button>`).join("")}
     </div>
   </section>
+  ${(()=>{const vs=ALL.filter(x=>VIDEO[x.w]); return vs.length?`<section class="panel">
+    <h2>🎬 成語動畫</h2>
+    <p class="hint">看小故事，認識成語的意思。</p>
+    <div class="vlist">${vs.map(x=>`<button class="vcard" type="button" data-video="${x.w}"><img src="videos/${VIDEO[x.w]}.jpg" alt="" loading="lazy"><span><b>${x.w}</b><small>第${x.lesson}課・30 秒</small></span></button>`).join("")}</div>
+  </section>`:""})()}
   <section class="panel">
     <h2>3. 選一個遊戲開始</h2>
     <p class="warn" id="warn">${msg}</p>
@@ -471,7 +505,7 @@ function finish(ok,q){
     ${pron(q.w)}
     <p><span class="tagred">解釋</span>${q.exp}</p>
     <p><span class="tagblue">例句</span>${q.sent}</p>
-    <div class="fx"><button class="btn" id="next">${last?"看成績":"下一題"}</button></div>`;
+    <div class="fx">${vbtn(q.w)}<button class="btn" id="next">${last?"看成績":"下一題"}</button></div>`;
   const nx=fb.querySelector("#next"); nx.focus({preventScroll:true});
   fb.scrollIntoView({behavior:"smooth",block:"nearest"});
   nx.onclick=()=>{ G.i++; if(G.i<G.queue.length) question(); else result(); };
@@ -589,8 +623,9 @@ function flash(items){
             <p><span class="tagred">解釋</span>${c.exp}</p>
             <p><span class="tagblue">例句</span>${c.sent}</p>
             <p style="font-size:15px;color:var(--muted)">第${c.lesson}課・生字「${c.keys.join("、")}」</p>
+            ${VIDEO[c.w]?`<p style="text-align:center">${vbtn(c.w)}</p>`:""}
           </div>`
-        :`<span class="qtag">第${c.lesson}課</span>${tz(c.w)}<span class="qtag">點一下看解釋</span>`}
+        :`<span class="qtag">第${c.lesson}課${VIDEO[c.w]?"・🎬 有動畫":""}</span>${tz(c.w)}<span class="qtag">點一下看解釋</span>`}
       </div>
       <div class="flash-nav">
         <button class="btn ghost" id="prev" ${i===0?"disabled style='opacity:.4'":""}>← 上一張</button>
