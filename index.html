@@ -333,7 +333,8 @@ function checkFont(){
 }
 
 /* ---------- home ---------- */
-function home(msg=""){
+function home(msg="", keep=false){
+  const keepY = window.scrollY;
   const p = pool();
   $app.innerHTML = `
   <header class="hero">
@@ -374,18 +375,18 @@ function home(msg=""){
     注音：中華民國教育部（Ministry of Education, R.O.C.）。《國語辭典簡編本》（版本編號：2014_20260929）網址：https://dict.concised.moe.edu.tw/；簡編本未收錄的 42 個成語依《重編國語辭典修訂本》。<span id="fontinfo"></span></p>`;
   updateFontInfo();
   $app.querySelectorAll(".lesson").forEach(b=>b.onclick=()=>{
-    const n=+b.dataset.l; S.lessons = S.lessons.includes(n)? S.lessons.filter(x=>x!==n) : [...S.lessons,n].sort(); saveS(); home();
+    const n=+b.dataset.l; S.lessons = S.lessons.includes(n)? S.lessons.filter(x=>x!==n) : [...S.lessons,n].sort((a,b)=>a-b); saveS(); home("",true);
   });
-  $app.querySelectorAll(".gr").forEach(b=>b.onclick=()=>{ const g=+b.dataset.gr; if(g!==GRADE){ setGrade(g); home(); } });
-  $app.querySelector("#all").onclick=()=>{S.lessons=LESSONS.map(l=>l.n);saveS();home();};
-  $app.querySelector("#none").onclick=()=>{S.lessons=[];saveS();home();};
-  $app.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{S.count=+b.dataset.c;saveS();home();});
-  $app.querySelectorAll("[data-src]").forEach(b=>b.onclick=()=>{S.src=b.dataset.src;saveS();home();});
+  $app.querySelectorAll(".gr").forEach(b=>b.onclick=()=>{ const g=+b.dataset.gr; if(g!==GRADE){ setGrade(g); home("",true); } });
+  $app.querySelector("#all").onclick=()=>{S.lessons=LESSONS.map(l=>l.n);saveS();home("",true);};
+  $app.querySelector("#none").onclick=()=>{S.lessons=[];saveS();home("",true);};
+  $app.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{S.count=+b.dataset.c;saveS();home("",true);});
+  $app.querySelectorAll("[data-src]").forEach(b=>b.onclick=()=>{S.src=b.dataset.src;saveS();home("",true);});
   $app.querySelectorAll(".game").forEach(b=>b.onclick=()=>{
-    if(!pool().length){ home(S.lessons.length&&HAS_J&&S.src==="ext"?"選的課沒有延伸成語（從第 7 課開始才有），請改選其他課或範圍喔！":"請先在上面選至少一課喔！"); return; }
+    if(!pool().length){ home(S.lessons.length&&HAS_J&&S.src==="ext"?"選的課沒有延伸成語（從第 7 課開始才有），請改選其他課或範圍喔！":"請先在上面選至少一課喔！", true); return; }
     start(b.dataset.g);
   });
-  window.scrollTo(0,0);
+  window.scrollTo(0, keep ? keepY : 0);
 }
 
 /* ---------- game shell ---------- */
